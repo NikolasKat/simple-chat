@@ -1,7 +1,9 @@
+import JoinMenu from "./components/JoinMenu";
+
 function App() {
    return (
-      <div className="App">
-         <h1>Hello</h1>
+      <div className="wrapper">
+         <JoinMenu />
       </div>
    );
 }
