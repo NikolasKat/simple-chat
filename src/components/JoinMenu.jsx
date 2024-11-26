@@ -1,13 +1,25 @@
 import React, { useState } from "react";
+import axios from "axios";
 import socket from "../socket";
 
-export default function JoinMenu() {
+export default function JoinMenu({ onLogin }) {
    const [roomId, setRoomId] = useState("");
    const [userName, setUserName] = useState("");
    const [isLoading, setLoading] = useState(false);
 
-   const onEnter = () => {
-      console.log(roomId, userName);
+   const onEnter = async () => {
+      if (!roomId || !userName) {
+         return alert("Неверные данные");
+      }
+
+      const obj = {
+         roomId,
+         userName,
+      };
+
+      setLoading(true);
+      await axios.post("/rooms", obj);
+      onLogin(obj);
    };
 
    return (
